@@ -97,3 +97,31 @@ function closeModal(){
 cs('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=>{
     item.addEventListener('click', closeModal)
 });
+
+
+// botão adicionar e remover pizzas
+
+
+    //Adicionar
+c('.pizzaInfo--qtmais').addEventListener('click', ()=>{
+    modalQt++;
+    c('.pizzaInfo--qt').innerHTML = modalQt;
+});
+
+    //Remover
+c('.pizzaInfo--qtmenos').addEventListener('click', ()=>{
+    if(modalQt >1){
+        modalQt--;
+    c('.pizzaInfo--qt').innerHTML = modalQt;
+    }    
+});
+
+
+
+//Seleção de 'clicks' em tamanhos
+cs('.pizzaInfo--size').forEach((size, sizeIndex)=>{
+    size.addEventListener('click', (e)=>{
+        c('.pizzaInfo--size.selected').classList.remove('selected');
+        size.classList.add('selected');
+    });
+});
