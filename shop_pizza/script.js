@@ -133,12 +133,25 @@ cs('.pizzaInfo--size').forEach((size, sizeIndex)=>{
 //add itens no carrinho
 c('.pizzaInfo--addButton').addEventListener('click', ()=>{
     let size =  parseInt(c('.pizzaInfo--size.selected').getAttribute('data-key'));
+    
+    
+    //Identificador de id e size
+    let identifier = pizzaJson[modalKey].id+'@'+size;
 
-    cart.push({
-        id:pizzaJson[modalKey].id, //id da pizza
-        size, //tamanho da pizza
-        qt:modalQt // quantidade
-    });
+    let key = cart.findIndex((item)=>item.identifier == identifier);
+    
+    if(key > -1){
+        cart[key].qt += modalQt;
+    }else{
+        //Adicionando
+        cart.push({
+            identifier,
+            id:pizzaJson[modalKey].id, //id da pizza
+            size, //tamanho da pizza
+            qt:modalQt // quantidade
+        });
+    }
+
 
     closeModal(); // ao final de tudo, fechar o modal
 });
